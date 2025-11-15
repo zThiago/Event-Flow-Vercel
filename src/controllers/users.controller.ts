@@ -20,7 +20,7 @@ import { UpdateUserDto } from '../users/dto/update-user.dto';
 import { ChangePasswordDto } from '../users/dto/change-password.dto';
 import { UserFilterDto } from '../users/dto/user-filter.dto';
 import { UserResponseDto } from '../users/dto/user-response.dto';
-import { SelfUpdateUserDto } from 'src/users/dto/self-update.user.dto';
+import { SelfUpdateUserDto } from '../users/dto/self-update.user.dto';
 
 @ApiTags('users')
 @Controller('users')
