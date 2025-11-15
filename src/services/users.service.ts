@@ -1,12 +1,12 @@
 import { ConflictException, Injectable, UnauthorizedException } from "@nestjs/common";
 import { PrismaService } from "prisma/prisma.service";
-import { User } from "src/interfaces/user.interface";
+import { User } from "../interfaces/user.interface";
 import { UserRole } from "@prisma/client";
 import * as bcrypt from 'bcryptjs';
-import { UserFilterDto } from "src/users/dto/user-filter.dto";
-import { UpdateUserDto } from "src/users/dto/update-user.dto";
-import { CreateUserDto } from "src/users/dto/create-user.dto";
-import { SelfUpdateUserDto } from "src/users/dto/self-update.user.dto";
+import { UserFilterDto } from "../users/dto/user-filter.dto";
+import { UpdateUserDto } from "../users/dto/update-user.dto";
+import { CreateUserDto } from "../users/dto/create-user.dto";
+import { SelfUpdateUserDto } from "../users/dto/self-update.user.dto";
 
 @Injectable()
 export class UsersService {
