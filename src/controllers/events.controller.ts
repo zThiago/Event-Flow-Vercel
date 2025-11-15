@@ -99,6 +99,6 @@ export class EventsController {
   @ApiResponse({ status: 403, description: 'Sem permissão para excluir este evento' })
   @ApiResponse({ status: 404, description: 'Evento não encontrado' })
   remove(@Param('id') id: number, @Request() req) {
-    return this.eventsService.remove(id, req.user.id);
+    return this.eventsService.remove(Number(id), req.user.id);
   }
 }
