@@ -4,10 +4,6 @@ import { UserRole } from '@prisma/client';
 import { CreateUserDto } from './create-user.dto';
 
 export class UpdateUserDto extends PartialType(CreateUserDto) {
-  @ApiProperty({ example: true, description: 'Status do usuário', required: false })
-  @IsOptional()
-  @IsBoolean()
-  ativo?: boolean;
 
   @ApiProperty({ example: 'USER', description: 'Role do usuário', enum: UserRole, required: false })
   @IsOptional()
