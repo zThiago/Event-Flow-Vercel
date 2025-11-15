@@ -1,34 +1,39 @@
 import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
-import {SwaggerModule, DocumentBuilder} from '@nestjs/swagger';
+import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
-
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  app.useGlobalPipes(new ValidationPipe({
-    whitelist: true,
-    transform: true
-  }));
+  app.useGlobalPipes(new ValidationPipe());
   app.enableCors();
-  
+
   const config = new DocumentBuilder()
-  .setTitle('Event Flow API')
-  .setDescription('Api para o aplicativo mobile Event Flow')
-  .setVersion('0.1')
-  .addBearerAuth()
-  .build();
+    .setTitle('Event Flow API')
+    .setDescription('API para gerenciamento de eventos')
+    .setVersion('1.0')
+    .addBearerAuth()
+    .build();
 
-  const document = SwaggerModule.createDocument(app, config, {
-    extraModels: []
-  });
+  const document = SwaggerModule.createDocument(app, config);
+
+  // Configuração para Vercel com CDN
   SwaggerModule.setup('api', app, document, {
+    customSiteTitle: 'Event Flow API',
+    customCssUrl: 'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.9.0/swagger-ui.min.css',
+    customJs: [
+      'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.9.0/swagger-ui-bundle.js',
+      'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.9.0/swagger-ui-standalone-preset.js',
+    ],
     swaggerOptions: {
-      persistAuthorization: true
-    }
+      persistAuthorization: true,
+      tryItOutEnabled: true,
+      docExpansion: 'none',
+      filter: true,
+    },
   });
 
-  await app.listen(process.env.PORT ?? 3000);
+  await app.listen(process.env.PORT || 3000);
 }
 bootstrap();
