@@ -4,10 +4,6 @@ import { UserRole } from '@prisma/client';
 import { CreateUserDto } from './create-user.dto';
 
 export class SelfUpdateUserDto extends PartialType(CreateUserDto) {
-  @ApiProperty({ example: true, description: 'Status do usuário', required: false })
-  @IsOptional()
-  @IsBoolean()
-  ativo?: boolean;
 
   @ApiProperty({ example: 'https://imgur.com/', description: 'Imagem do perfil', required: false })
   @IsOptional()
